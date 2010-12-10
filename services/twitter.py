@@ -24,7 +24,7 @@ import time
 import logging
 
 # Non library modules
-import simplejson
+from django.utils import simplejson
 import oauth2 as oauth
 
 # Taken from oauth implementation at: http://github.com/harperreed/twitteroauth-python/tree/master

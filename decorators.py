@@ -1,4 +1,8 @@
+import random
+import hashlib
+
 from google.appengine.api import users
+
 import models
 
 def login_required(method):
@@ -18,7 +22,7 @@ def login_required(method):
 			pass
 		
 		elif user and not account:
-			account = models.Account(user=user)
+			account = models.Account(user=user, api_key=hashlib.md5("apik-%s-%s" % (user.nickname(), random.randint(1,9999))).hexdigest())
 			account.put()
 			
 		kwargs['user'] = user

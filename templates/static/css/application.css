@@ -32,3 +32,16 @@ th {
 
 td {
   font-size: 12px; }
+
+table.history {
+  width: 100%; }
+  table.history th {
+    font-weight: bold;
+    padding: 4px;
+    border-bottom: double 3px #cccccc; }
+  table.history td {
+    padding: 4px;
+    border-bottom: dotted 1px #cccccc;
+    text-align: center; }
+  table.history th.first, table.history td.first {
+    text-align: left; }

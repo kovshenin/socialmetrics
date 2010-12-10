@@ -65,15 +65,15 @@
 <h2>History</h2>
 <div id="container"></div>
 
-<table>
+<table class="history">
 	<tr>
-		<th>Date</th>
+		<th class="first">Date</th>
 		<th>Twitter</th>
 		<th>Facebook</th>
 	</tr>
 	{% for entry in history %}
 	<tr>
-		<td>{{ entry.date }}</td>
+		<td class="first">{{ entry.date }}</td>
 		<td>{{ entry.twitter }}</td>
 		<td>{{ entry.facebook }}</td>
 	</tr>
@@ -85,5 +85,7 @@
 	<li>Twitter is <strong>{% if account.twitter %}connected{% else %}not connected{% endif %}</strong></li>
 	<li>Facebook is <strong>{% if account.facebook %}connected{% else %}not connected{% endif %}</strong></li>
 </ul>
+
+<p>Your API key is: {{ api_key }}</p>
 
 <p><a href="{{ logout_url }}">logout</a></p>
