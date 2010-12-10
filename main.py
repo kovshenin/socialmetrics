@@ -119,6 +119,14 @@ class Connect(webapp.RequestHandler):
 			account.twitter = {'request_token': credentials['oauth_token'], 'request_token_secret': credentials['oauth_token_secret']}
 			account.put()
 			
+		elif service == 'facebook':
+			current_user = None
+			cookie = services.facebook.get_user_from_cookie(self.request.cookies, '135179616501403', '06147433e7a606cfa899d61404cc1621')
+
+			#fb_user = services.facebook.get_user_from_cookie(self.request.cookies, '135179616501403', '06147433e7a606cfa899d61404cc1621')
+			front.rendertext(self, "Here %s" % self.request.cookies)
+			front.render(self, 'connect_facebook.html', {'facebook_app_id': '135179616501403', 'current_user': current_user})
+			
 	@decorators.login_required
 	def post(self, service, *args, **kwargs):
 		user, account = kwargs.get('user'), kwargs.get('account')		
