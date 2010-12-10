@@ -1,0 +1,89 @@
+<link href="/static/css/application.css" media="all" rel="stylesheet" type="text/css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="/static/js/highcharts.src.js"></script>
+<script>
+	var chart;
+	$(document).ready(function() {
+	   chart = new Highcharts.Chart({
+		  chart: {
+			 renderTo: 'container',
+			 defaultSeriesType: 'spline',
+			 marginRight: 0,
+			 marginLeft: 40,
+			 marginBottom: 65
+		  },
+		  title: {
+			 text: 'Social Metrics',
+			 x: -20 //center
+		  },
+		  xAxis: {
+			 type: 'datetime',
+			 tickInterval: 24 * 3600 * 1000,
+			 tichWidth: 0,
+			 gridLineWidth: 1,
+			 labels: {
+				 align: 'center',
+				 x: 0,
+				 y: 18
+			 }
+		  },
+		  yAxis: {
+			 title: {
+				text: null
+			 },
+			 labels: {
+				 align: 'right',
+				 x: -6,
+				 y: 4,
+				 formatter: function() {
+					 return Highcharts.numberFormat(this.value, 0);
+				 }
+			 },
+			 showFirstLabel: false
+		  },
+		  tooltip: {
+			 formatter: function() {
+				return '<b>'+ this.series.name +'</b><br/>'+ this.y;
+			 }
+		  },
+		  legend: {
+			 layout: 'horizontal',
+			 align: 'center',
+			 verticalAlign: 'bottom',
+			 borderWidth: 1
+		  },
+		  
+		  series: {{ series }}
+	   });
+	   
+	   
+	});
+</script>
+<h1>Dashboard</h1>
+<p>Welcome to your dashboard.</p>
+
+<h2>History</h2>
+<div id="container"></div>
+
+<table>
+	<tr>
+		<th>Date</th>
+		<th>Twitter</th>
+		<th>Facebook</th>
+	</tr>
+	{% for entry in history %}
+	<tr>
+		<td>{{ entry.date }}</td>
+		<td>{{ entry.twitter }}</td>
+		<td>{{ entry.facebook }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+<h2>Services</h2>
+<ul>
+	<li>Twitter is <strong>{% if account.twitter %}connected{% else %}not connected{% endif %}</strong></li>
+	<li>Facebook is <strong>{% if account.facebook %}connected{% else %}not connected{% endif %}</strong></li>
+</ul>
+
+<p><a href="{{ logout_url }}">logout</a></p>

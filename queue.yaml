@@ -1,0 +1,5 @@
+queue:
+- name: default
+  rate: 5/s
+- name: collect
+  rate: 0.5/s

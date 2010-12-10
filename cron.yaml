@@ -1,0 +1,4 @@
+cron:
+- description: Data Collection
+  url: /admin/cron/?task=collect
+  schedule: every 30 minutes synchronized
